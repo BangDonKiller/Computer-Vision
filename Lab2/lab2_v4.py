@@ -4,13 +4,7 @@ import os
 
 
 def BGR2GRAY2ThreeChannel(img_bgr):
-    #############
-    # Your Code #
-    #############
-
     img_gray = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
-
-    # -----------#
     return img_gray
 
 
@@ -28,10 +22,6 @@ def logTransformation(img):
 
 
 def segmentation_And_processing(img):
-    #############
-    # Your Code #
-    #############
-
     img_up_left, img_up_right, img_down_left, img_down_right = (
         img[0 : img.shape[0] // 2, 0 : img.shape[1] // 2],
         img[0 : img.shape[0] // 2, img.shape[1] // 2 : img.shape[1]],
@@ -47,15 +37,10 @@ def segmentation_And_processing(img):
     img_up_right = logTransformation(img_up_right)
     img_down_right = logTransformation(img_down_right)
 
-    # -----------#
     return img_up_left, img_up_right, img_down_left, img_down_right
 
 
 def segmentConcatenate(img_up_a, img_up_b, img_down_a, img_down_b):
-    #############
-    # Your Code #
-    #############
-
     # img_up_b 新增第二維度
     img_up_b = np.expand_dims(img_up_b, axis=2)
     img_up_b = cv2.cvtColor(img_up_b, cv2.COLOR_GRAY2BGR)
@@ -68,7 +53,6 @@ def segmentConcatenate(img_up_a, img_up_b, img_down_a, img_down_b):
 
     concate = np.concatenate((concate_up, concate_down), axis=0)
 
-    # -----------#
     return concate
 
 
@@ -98,24 +82,13 @@ def main():
     img_output = negativeLinear(img_gray)
     imgShow("student_id_lab2", img_output)
 
-    ####################################
-    # You need to finish this function #
-    ####################################
     img_up_left, img_up_right, img_down_left, img_down_right = (
         segmentation_And_processing(img)
     )
 
-    ####################################
-    # You need to finish this function #
-    ####################################
     img_output = segmentConcatenate(
         img_up_left, img_up_right, img_down_left, img_down_right
     )
-
-    ####################################
-    # You need to finish this function #
-    ####################################
-    # BGR2GRAY2ThreeChannel
 
     imgShow("110502510_lab2", img_output)
 
