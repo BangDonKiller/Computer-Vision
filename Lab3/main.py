@@ -84,6 +84,8 @@ def code_main():
     save_histPlot(normed_img, hist2, fn="hist2")
     #
     cv2.imshow("Histogram Equalization", normed_img)
+    # save img
+    cv2.imwrite(os.path.join(os.path.dirname(__file__), "result.jpg"), normed_img)
 
     cv2.waitKey(0)
 
