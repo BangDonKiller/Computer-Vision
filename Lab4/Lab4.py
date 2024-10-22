@@ -43,7 +43,6 @@ def apply_skin_color_segmentation_ycrcb(frame):
 
 
 def main():
-    # Read the given video
     cap = cv2.VideoCapture("Lab4.mp4")
 
     while cap.isOpened():
